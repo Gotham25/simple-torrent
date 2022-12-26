@@ -1,0 +1,9 @@
+vendor
+downloads
+torrents
+cloud-torrent*
+simple-torrent*
+tmp/
+play*.yml
+.vscode
+.torrent.bolt.db
