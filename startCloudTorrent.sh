@@ -27,4 +27,4 @@ fi
 
 echo -e "Starting cloud torrent...\n"
 
-${CLOUD_TORRENT_BINARY} ${PORT_OPT} ${AUTHENTICATION_OPT}
+${CLOUD_TORRENT_BINARY} --req-log --config-path cloud-torrent.yaml ${PORT_OPT} ${AUTHENTICATION_OPT}
