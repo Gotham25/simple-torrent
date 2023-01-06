@@ -17,14 +17,14 @@ RUN go build -trimpath -ldflags "-s -w -X main.VERSION=$(git describe --tags)" -
 FROM alpine
 RUN apk update && apk --no-cache add ca-certificates curl zip tar bzip2 gzip vim bash libstdc++
 COPY --from=builder /usr/local/bin/cloud-torrent /usr/local/bin/cloud-torrent
-# ENTRYPOINT ["cloud-torrent"]
 RUN addgroup -S appgroup && adduser -S ctuser -G appgroup
 WORKDIR /app
 COPY startCloudTorrent.sh .
+COPY cloud-torrent.yaml .
 RUN cp /usr/local/bin/cloud-torrent .
 RUN chown -R ctuser:appgroup /app
 USER ctuser
-RUN chmod +x cloud-torrent
-RUN chmod +x startCloudTorrent.sh && echo "Using cloud torrent version: $(cloud-torrent --version)"
+RUN chmod +x cloud-torrent && chmod +x startCloudTorrent.sh
+RUN export CLOUD_TORRENT_VERSION=$(cloud-torrent --version) && echo "Using cloud torrent version: ${CLOUD_TORRENT_VERSION}"
 EXPOSE 3000
 CMD [ "bash", "startCloudTorrent.sh" ]
