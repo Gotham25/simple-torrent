@@ -25,6 +25,10 @@ else
   echo "Autentication is not set. Skipping authentication configuration..."
 fi
 
+mkdir -p /tmp/Downloads
+mkdir -p /tmp/torrents
+
 echo -e "Starting cloud torrent...\n"
 
 ${CLOUD_TORRENT_BINARY} --req-log --config-path cloud-torrent.yaml ${PORT_OPT} ${AUTHENTICATION_OPT}
+
